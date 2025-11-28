@@ -2,3 +2,14 @@ body{
     height: 100vh;
 }
 
+.stack-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    place-items: center;
+}
+
+.stack-container > div {
+    grid-area: 1/1;
+}
