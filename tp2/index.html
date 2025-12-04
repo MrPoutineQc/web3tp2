@@ -23,8 +23,8 @@
      </script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
 
-    <script type="module" src="./src/js/chartjs.js"></script>
-    <script type="module" src="./src/js/animejs.js"></script>
+    <script type="module" src="./src/js/chartjs.js" defer></script>
+    <script type="module" src="./src/js/animejs.js" defer></script>
 
     <script src="./src/js/bootstrap.js" defer></script>
     <script src="./src/js/maplibre.js" defer></script>
@@ -35,47 +35,171 @@
 
 </head>
 
-<body class="bg-dark text-white p-0 m-0">
+<body class="p-0 m-0">
 
-    <div class="container-fluid p-0 m-0 h-100">
-        <div class="row h-100 g-0">
+    <div class="container-fluid p-2 m-0 h-100">
+        <div class="row h-100 g-2">
 
-            <!-- ---- COLONNE CENTRALE ---- -->
-            <div class="col-12 col-md-12 col-lg-6 d-flex flex-column p-0 h-100 order-md-1 order-lg-2">
+            <!-- COLONNE CENTRALE -->
+            <div class="col-12 col-md-12 col-lg-6 d-flex flex-column px-2 h-100 order-md-1 order-lg-2">
 
                 <!-- Header -->
-                <div class="row g-0">
-                    <div class="col-12 col-md-4 border p-3 text-center">divATE</div>
-                    <div class="col-12 col-md-4 border p-3 text-center">Qrypta</div>
-                    <div class="col-12 col-md-4 border p-3 text-center">USER</div>
+                <div class="row g-2 mb-2">
+                    <div class="col-12 col-md-4 border p-3 text-center header-cell glitch">
+                        <div id="date-display">2025-12-08</div>
+                    </div>
+                    <div class="col-12 col-md-4 border p-3 text-center header-cell glitch">
+                        <div>QRYPTA</div>
+                    </div>
+                    <div class="col-12 col-md-4 border p-3 text-center header-cell glitch">
+                        <div id="user-display">USER_QX7849</div>
+                    </div>
                 </div>
 
                 <!-- GLOBE -->
-                <div class="border flex-fill d-flex justify-content-center align-items-center">Zone centrale</div>
+                <div class="border flex-fill globe-container mb-2">
+                    GLOBE
+                </div>
+
+                <!-- Rings section -->
+                <div class="border rings-section">
+                    <!-- 2 cercles du haut avec texte changeant -->
+                    <div class="top-rings">
+                        <div class="text-ring">
+                            <svg viewBox="0 0 160 160">
+                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.3)"
+                                    stroke-width="8" />
+                            </svg>
+                            <div class="ring-content">
+                                <div class="ring-label">Latency</div>
+                                <div class="chiffre">12</div>
+                                <div class="ring-unit">ms</div>
+                            </div>
+                        </div>
+                        <div class="text-ring">
+                            <svg viewBox="0 0 160 160">
+                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.3)"
+                                    stroke-width="8" />
+                            </svg>
+                            <div class="ring-content">
+                                <div class="ring-label">Q-Crédit</div>
+                                <div class="chiffre">8470</div>
+                                <div class="ring-unit">K Q₡</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Titre -->
+                    <div class="rings-title">Graphiques en anneau</div>
+
+                    <!-- 4 cercles du bas avec anneaux animés -->
+                    <div class="bottom-rings">
+                        <div class="circle-container">
+                            <svg viewBox="0 0 160 160">
+                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                                <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                            </svg>
+                            <span>0</span>
+                        </div>
+                        <div class="circle-container">
+                            <svg viewBox="0 0 160 160">
+                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                                <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                            </svg>
+                            <span>0</span>
+                        </div>
+                        <div class="circle-container">
+                            <svg viewBox="0 0 160 160">
+                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                                <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                            </svg>
+                            <span>0</span>
+                        </div>
+                        <div class="circle-container">
+                            <svg viewBox="0 0 160 160">
+                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                                <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                            </svg>
+                            <span>0</span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
-            <!-- ---- COLONNE GAUCHE ---- -->
-            <div class="col-12 col-md-6 col-lg-3 d-flex flex-column p-0 h-100 order-md-2 order-lg-1">
-                <div class="border flex-fill d-flex justify-content-center align-items-center">Graphique en lignes</div>
-                <div class="border flex-fill d-flex justify-content-center align-items-center">Graphique à barres</div>
-                <div class="border flex-fill d-flex justify-content-center align-items-center">Graphique polaire</div>
+            <!-- COLONNE GAUCHE -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex flex-column px-2 h-100 order-md-2 order-lg-1">
+                
+                <!-- Valeur du Q-Crédit -->
+                <div class="border flex-fill chart-wrapper mb-2">
+                    <div class="chart-title">Q-Credit Value</div>
+                    <canvas id="lineChart"></canvas>
+                </div>
+
+                <!-- Flux entrants / sortants -->
+                <div class="border flex-fill chart-wrapper mb-2">
+                    <div class="chart-title">Inbound / Outbound Flux</div>
+                    <canvas id="barChart1"></canvas>
+                </div>
+
+                <!-- Dix pays les plus riches -->
+                <div class="border flex-fill chart-wrapper">
+                    <div class="chart-title">Top 10 Wealthiest Nations</div>
+                    <canvas id="polarChart"></canvas>
+                </div>
             </div>
 
-            <!-- ---- COLONNE DROITE ---- -->
-            <div class="col-12 col-md-6 col-lg-3 d-flex flex-column p-0 h-100 order-md-3 order-lg-3">
-                <div class="border flex-fill stack-container">
-                    <div>dfghj</div>
-                    <div>qwertt</div>
+            <!-- COLONNE DROITE -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex flex-column px-2 h-100 order-md-3 order-lg-3">
+
+                <!-- Volume total de transactions -->
+                <div class="border flex-fill chart-wrapper mb-2">
+                    <div class="chart-title">Transaction Volume</div>
+                    <canvas id="barChart2"></canvas>
                 </div>
-                <div class="border flex-fill d-flex justify-content-center align-items-center">Graphiques anneau/tarte
+
+                <!-- Classement des actifs énergétiques -->
+                <div class="border flex-fill chart-wrapper mb-2">
+                    <div class="chart-title">Energy Asset Ranking</div>
+                    <canvas id="pieChart"></canvas>
                 </div>
-                <div class="border flex-fill d-flex justify-content-center align-items-center">Indicateur visuel</div>
+
+                <!-- Jauges -->
+                <div class="border flex-fill gauge-container">
+                    <div class="chart-title">GAUGE</div>
+                    <div class="gauge-item">
+                        <div class="gauge-label">Global Economic Pressure</div>
+                        <div class="gauge-bar">
+                            <div class="gauge-fill" id="gauge1" style="width: 67%;"></div>
+                            <div class="gauge-value">67%</div>
+                        </div>
+                    </div>
+                    <div class="gauge-item">
+                        <div class="gauge-label">System Stress</div>
+                        <div class="gauge-bar">
+                            <div class="gauge-fill" id="gauge2" style="width: 42%;"></div>
+                            <div class="gauge-value">42%</div>
+                        </div>
+                    </div>
+                    <div class="gauge-item">
+                        <div class="gauge-label">User Confidence</div>
+                        <div class="gauge-bar">
+                            <div class="gauge-fill" id="gauge3" style="width: 81%;"></div>
+                            <div class="gauge-value">81%</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
-
-</body>
 
 </html>
