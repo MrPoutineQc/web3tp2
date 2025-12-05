@@ -17,14 +17,18 @@
             "imports": {
                 "animejs": "./node_modules/animejs/dist/bundles/anime.esm.min.js",
                 "chart.js": "./node_modules/chart.js/auto/auto.js",
-                "@kurkle/color": "./node_modules/@kurkle/color/dist/color.esm.js"
+                "@kurkle/color": "./node_modules/@kurkle/color/dist/color.esm.js",
+                
+                "date-fns": "https://cdn.jsdelivr.net/npm/date-fns@3.x/index.mjs",
+                "chartjs-adapter-date-fns": "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.esm.js"
             }
         }
-     </script>
+    </script>
+
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
 
-    <script type="module" src="./src/js/chartjs.js" defer></script>
-    <script type="module" src="./src/js/animejs.js" defer></script>
+    <script type="module" src="./src/js/chartjs.js"></script>
+    <script type="module" src="./src/js/animejs.js"></script>
 
     <script src="./src/js/bootstrap.js" defer></script>
     <script src="./src/js/maplibre.js" defer></script>
@@ -63,6 +67,7 @@
 
                 <!-- Rings section -->
                 <div class="border rings-section">
+
                     <!-- 2 cercles du haut avec texte changeant -->
                     <div class="top-rings">
                         <div class="text-ring">
@@ -89,11 +94,12 @@
                         </div>
                     </div>
 
-                    <!-- Titre -->
-                    <div class="rings-title">Graphiques en anneau</div>
+                    <!-- Titre Anneaux -->
+                    <div class="rings-title">Core Indicators</div>
 
                     <!-- 4 cercles du bas avec anneaux animés -->
                     <div class="bottom-rings">
+
                         <div class="circle-container">
                             <svg viewBox="0 0 160 160">
                                 <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
@@ -103,6 +109,7 @@
                             </svg>
                             <span>0</span>
                         </div>
+
                         <div class="circle-container">
                             <svg viewBox="0 0 160 160">
                                 <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
@@ -112,6 +119,7 @@
                             </svg>
                             <span>0</span>
                         </div>
+
                         <div class="circle-container">
                             <svg viewBox="0 0 160 160">
                                 <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
@@ -121,6 +129,7 @@
                             </svg>
                             <span>0</span>
                         </div>
+
                         <div class="circle-container">
                             <svg viewBox="0 0 160 160">
                                 <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
@@ -137,7 +146,7 @@
 
             <!-- COLONNE GAUCHE -->
             <div class="col-12 col-md-6 col-lg-3 d-flex flex-column px-2 h-100 order-md-2 order-lg-1">
-                
+
                 <!-- Valeur du Q-Crédit -->
                 <div class="border flex-fill chart-wrapper mb-2">
                     <div class="chart-title">Q-Credit Value</div>
@@ -147,7 +156,7 @@
                 <!-- Flux entrants / sortants -->
                 <div class="border flex-fill chart-wrapper mb-2">
                     <div class="chart-title">Inbound / Outbound Flux</div>
-                    <canvas id="barChart1"></canvas>
+                    <canvas id="barChartOne"></canvas>
                 </div>
 
                 <!-- Dix pays les plus riches -->
@@ -163,7 +172,7 @@
                 <!-- Volume total de transactions -->
                 <div class="border flex-fill chart-wrapper mb-2">
                     <div class="chart-title">Transaction Volume</div>
-                    <canvas id="barChart2"></canvas>
+                    <canvas id="barChartTwo"></canvas>
                 </div>
 
                 <!-- Classement des actifs énergétiques -->
@@ -174,7 +183,9 @@
 
                 <!-- Jauges -->
                 <div class="border flex-fill gauge-container">
-                    <div class="chart-title">GAUGE</div>
+
+                    <div class="chart-title">Core Indicators</div>
+
                     <div class="gauge-item">
                         <div class="gauge-label">Global Economic Pressure</div>
                         <div class="gauge-bar">
@@ -182,6 +193,7 @@
                             <div class="gauge-value">67%</div>
                         </div>
                     </div>
+
                     <div class="gauge-item">
                         <div class="gauge-label">System Stress</div>
                         <div class="gauge-bar">
@@ -189,6 +201,7 @@
                             <div class="gauge-value">42%</div>
                         </div>
                     </div>
+
                     <div class="gauge-item">
                         <div class="gauge-label">User Confidence</div>
                         <div class="gauge-bar">
@@ -196,10 +209,13 @@
                             <div class="gauge-value">81%</div>
                         </div>
                     </div>
+
                 </div>
+
             </div>
 
         </div>
+
     </div>
 
 </html>

@@ -1,258 +1,265 @@
    * {
-            font-family: 'Orbitron', sans-serif;
-        }
+       font-family: 'Orbitron', sans-serif;
+   }
 
-        body {
-            height: 100vh;
-            overflow: hidden;
-            background-color: #1C1C1C;
-            color: #F4D03F;
-        }
+   body {
+       height: 100vh;
+       overflow: hidden;
+       background-color: #1C1C1C;
+       color: #F4D03F;
+   }
 
-        /* Force les colonnes flex */
-        .d-flex.flex-column {
-            min-height: 0;
-        }
+   /* Force les colonnes flex */
+   .d-flex.flex-column {
+       min-height: 0;
+   }
 
-        .flex-fill {
-            min-height: 0;
-            flex: 1 1 0;
-        }
+   .flex-fill {
+       min-height: 0;
+       flex: 1 1 0;
+   }
 
-        /* Borders et style HUD */
-        .border {
-            border-color: #D4A017 !important;
-            border-width: 1px !important;
-            background-color: #000000;
-            box-shadow: 0 0 10px rgba(244, 208, 63, 0.3);
-            border-radius: 15px;
-        }
+   /* BORDER */
+   .border {
+       border-color: #D4A017 !important;
+       border-width: 2px !important;
+       background-color: #000000;
+       box-shadow: 0 0 10px rgba(244, 208, 63, 0.3);
+       border-radius: 15px;
+   }
 
-        /* Header styling */
-        .header-cell {
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, rgba(244, 208, 63, 0.1), rgba(212, 160, 23, 0.1));
-        }
+   /* HEADER STYLE */
+   .header-cell {
+       font-weight: 700;
+       font-size: 1rem;
+       text-transform: uppercase;
+       letter-spacing: 2px;
+       background: linear-gradient(135deg, rgba(244, 208, 63, 0.1), rgba(212, 160, 23, 0.1));
+   }
 
-        /* Graphiques */
-        .chart-wrapper {
-            position: relative;
-            padding: 1vh;
-            min-height: 0;
-            overflow: hidden;
-        }
+   /* Graphiques */
+   .chart-wrapper {
+       position: relative;
+       padding: 1vh;
+       min-height: 0;
+       overflow: hidden;
+   }
 
-        .chart-wrapper canvas {
-            display: block !important;
-            max-width: 100% !important;
-            max-height: 100% !important;
-        }
+   .chart-wrapper canvas {
+       display: block !important;
+       max-width: 100% !important;
+       max-height: 100% !important;
+   }
 
-        .chart-title {
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #F4D03F;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+   /* STYLE TITRE GRAPHIQUE */
+   .chart-title {
+       position: absolute;
+       top: 10px;
+       left: 15px;
+       font-size: 1rem;
+       font-weight: bold;
+       color: #F4D03F;
+       text-transform: uppercase;
+       letter-spacing: 1px;
+   }
 
-        /* Globe container */
-        .globe-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
+   /* Globe container */
+   .globe-container {
+       position: relative;
+       width: 100%;
+       height: 100%;
+       overflow: hidden;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-size: 2rem;
+   }
 
-        /* SECTION ANNEAU */
-        .rings-section {
-            display: flex;
-            flex-direction: column;
-            padding: 15px;
-            gap: 15px;
-        }
+   /* SECTION ANNEAU */
+   .rings-section {
+       display: flex;
+       flex-direction: column;
+       padding: 15px;
+       gap: 15px;
+   }
 
-        .top-rings {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            gap: 20px;
-        }
+   .top-rings {
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       gap: 20px;
+   }
 
-        .rings-title {
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #F4D03F;
-            padding: 10px 0;
-        }
+   .rings-title {
+       text-align: center;
+       font-size: 1rem;
+       font-weight: 700;
+       text-transform: uppercase;
+       letter-spacing: 2px;
+       color: #F4D03F;
+       padding: 10px 0;
+   }
 
-        .bottom-rings {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            gap: 10px;
-        }
+   .bottom-rings {
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       gap: 10px;
+   }
 
-        /* TEXT (2 du haut) */
-        .text-ring {
-            position: relative;
-            width: 120px;
-            height: 120px;
-        }
+   /* TEXT (2 du haut) */
+   .text-ring {
+       position: relative;
+       width: 120px;
+       height: 120px;
+   }
 
-        .text-ring svg {
-            width: 100%;
-            height: 100%;
-        }
+   .text-ring svg {
+       width: 100%;
+       height: 100%;
+   }
 
-        .ring-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
+   .ring-content {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       text-align: center;
+   }
 
-        .ring-label {
-            font-size: 0.7rem;
-            color: #F9E79F;
-            margin-bottom: 2px;
-        }
+   .ring-label {
+       font-size: 0.7rem;
+       color: #F9E79F;
+       margin-bottom: 2px;
+   }
 
-        .chiffre {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #F4D03F;
-        }
+   .chiffre {
+       font-size: 1.5rem;
+       font-weight: 700;
+       color: #F4D03F;
+   }
 
-        .ring-unit {
-            font-size: 0.6rem;
-            color: #D4A017;
-            margin-top: 2px;
-        }
+   .ring-unit {
+       font-size: 0.6rem;
+       color: #D4A017;
+       margin-top: 2px;
+   }
 
-        /* 4 ANNEAUX ANIMÉS DU BAS */
-        .circle-container {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+   /* 4 ANNEAUX ANIMÉS DU BAS */
+   .circle-container {
+       position: relative;
+       width: 100px;
+       height: 100px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+   }
 
-        .circle-container svg {
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
+   .circle-container svg {
+       width: 100%;
+       height: 100%;
+       transform: rotate(-90deg);
+   }
 
-        .circle-container span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1rem;
-            font-weight: 700;
-            color: #F4D03F;
-        }
+   .circle-container span {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       font-size: 1rem;
+       font-weight: 700;
+       color: #F4D03F;
+   }
 
-        /* GAUGE BARS */
-        .gauge-container {
-            position: relative;
-            padding: 20px;
-        }
+   /* GAUGE BARS */
+   .gauge-container {
+       position: relative;
+       padding: 45px 20px 20px 20px;
+       max-height: fit-content;
+   }
 
-        .gauge-item {
-            margin-bottom: 20px;
-        }
+   .gauge-item {
+       margin-bottom: 20px;
+   }
 
-        .gauge-label {
-            font-size: 0.75rem;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+   .gauge-label {
+       font-size: 0.75rem;
+       margin-bottom: 5px;
+       text-transform: uppercase;
+       letter-spacing: 1px;
+   }
 
-        .gauge-bar {
-            width: 100%;
-            height: 20px;
-            background-color: rgba(244, 208, 63, 0.1);
-            border: 1px solid #D4A017;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-        }
+   .gauge-bar {
+       width: 100%;
+       height: 20px;
+       background-color: rgba(244, 208, 63, 0.1);
+       border: 1px solid #D4A017;
+       border-radius: 20px;
+       overflow: hidden;
+       position: relative;
+   }
 
-        .gauge-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff0000, #00ff00);
-            transition: width 0.5s ease;
-            box-shadow: 0 0 10px rgba(244, 208, 63, 0.5);
-            border-radius: 20px;
-        }
+   .gauge-fill {
+       height: 100%;
+       background: linear-gradient(90deg, #ff0000, #00ff00);
+       transition: width 0.5s ease;
+       box-shadow: 0 0 10px rgba(244, 208, 63, 0.5);
+       border-radius: 20px;
+   }
 
-        .gauge-value {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 0 0 5px #000;
-        }
+   /* TEXT GAUGE */
+   .gauge-value {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+       font-size: 0.8rem;
+       font-weight: 700;
+       color: #fff;
+       text-shadow: 0 0 5px #000;
+   }
 
-        /* PULSATION TITRE HEADER */
-        @keyframes glitch {
-            0% {
-                text-shadow: 0 0 5px #F4D03F;
-            }
-            25% {
-                text-shadow: -2px 0 5px #D4A017, 2px 0 5px #F9E79F;
-            }
-            50% {
-                text-shadow: 0 0 5px #F4D03F;
-            }
-            75% {
-                text-shadow: 2px 0 5px #D4A017, -2px 0 5px #F9E79F;
-            }
-            100% {
-                text-shadow: 0 0 5px #F4D03F;
-            }
-        }
+   /* PULSATION TITRE HEADER */
+   @keyframes pulsation {
+       0% {
+           text-shadow: 0 0 5px #F4D03F;
+       }
 
-        .glitch {
-            animation: glitch 3s infinite;
-        }
+       25% {
+           text-shadow: -2px 0 5px #D4A017, 2px 0 5px #F9E79F;
+       }
 
-        /* SCROLL MOBILE */
-        @media (max-width: 991px) {
-            body {
-                height: auto;
-                min-height: 100vh;
-                overflow-y: auto;
-            }
-            
-            .h-100 {
-                height: auto !important;
-                min-height: 100vh;
-            }
-            
-            .flex-fill {
-                min-height: 300px;
-            }
-        }
+       50% {
+           text-shadow: 0 0 5px #F4D03F;
+       }
+
+       75% {
+           text-shadow: 2px 0 5px #D4A017, -2px 0 5px #F9E79F;
+       }
+
+       100% {
+           text-shadow: 0 0 5px #F4D03F;
+       }
+   }
+
+   .glitch {
+       animation: pulsation 3s infinite;
+   }
+
+   /* SCROLL MOBILE */
+   @media (max-width: 991px) {
+       body {
+           height: auto;
+           min-height: 100vh;
+           overflow-y: auto;
+       }
+
+       .h-100 {
+           height: auto !important;
+           min-height: 100vh;
+       }
+
+       .flex-fill {
+           min-height: 300px;
+       }
+   }
