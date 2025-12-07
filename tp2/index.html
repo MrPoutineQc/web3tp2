@@ -18,7 +18,7 @@
                 "animejs": "./node_modules/animejs/dist/bundles/anime.esm.min.js",
                 "chart.js": "./node_modules/chart.js/auto/auto.js",
                 "@kurkle/color": "./node_modules/@kurkle/color/dist/color.esm.js",
-                
+
                 "date-fns": "https://cdn.jsdelivr.net/npm/date-fns@3.x/index.mjs",
                 "chartjs-adapter-date-fns": "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.esm.js"
             }
@@ -27,8 +27,8 @@
 
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
 
-    <script type="module" src="./src/js/chartjs.js"></script>
-    <script type="module" src="./src/js/animejs.js"></script>
+    <script src="./src/js/chartjs.js" type="module" defer></script>
+    <script src="./src/js/animejs.js" type="module" defer></script>
 
     <script src="./src/js/bootstrap.js" defer></script>
     <script src="./src/js/maplibre.js" defer></script>
@@ -39,7 +39,7 @@
 
 </head>
 
-<body class="p-0 m-0">
+<body class="p-0 m-0 wrapper">
 
     <div class="container-fluid p-2 m-0 h-100">
         <div class="row h-100 g-2">
@@ -48,24 +48,33 @@
             <div class="col-12 col-md-12 col-lg-6 d-flex flex-column px-2 h-100 order-md-1 order-lg-2">
 
                 <!-- Header -->
-                <div class="row g-2 mb-2">
-                    <div class="col-12 col-md-4 border p-3 text-center header-cell glitch">
-                        <div id="date-display">2025-12-08</div>
+                <div class="row g-3 mb-2">
+                    <div class="col-12 col-md-4">
+                        <div class="border p-3 text-center header-cell pulsation">
+                            <div id="date-display"><i class="bi bi-calendar3"></i> 2025-12-08</div>
+                        </div>
                     </div>
-                    <div class="col-12 col-md-4 border p-3 text-center header-cell glitch">
-                        <div>QRYPTA</div>
-                    </div>
-                    <div class="col-12 col-md-4 border p-3 text-center header-cell glitch">
-                        <div id="user-display">USER_QX7849</div>
-                    </div>
-                </div>
 
+                    <div class="col-12 col-md-4">
+                        <div class="border p-3 text-center header-cell pulsation">
+                            <div>QRYPTA</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="border p-3 text-center header-cell pulsation">
+                            <div id="user-display"><i class="bi bi-person-fill"></i> USER_QX7849</div>
+                        </div>
+                    </div>
+
+                </div>
+                
                 <!-- GLOBE -->
                 <div class="border flex-fill globe-container mb-2">
                     GLOBE
                 </div>
 
-                <!-- Rings section -->
+                <!-- RING -->
                 <div class="border rings-section">
 
                     <!-- 2 cercles du haut avec texte changeant -->
@@ -77,10 +86,11 @@
                             </svg>
                             <div class="ring-content">
                                 <div class="ring-label">Latency</div>
-                                <div class="chiffre">12</div>
+                                <div class="chiffre" id="latency-num">12</div>
                                 <div class="ring-unit">ms</div>
                             </div>
                         </div>
+
                         <div class="text-ring">
                             <svg viewBox="0 0 160 160">
                                 <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.3)"
@@ -88,7 +98,7 @@
                             </svg>
                             <div class="ring-content">
                                 <div class="ring-label">Q-Crédit</div>
-                                <div class="chiffre">8470</div>
+                                <div class="chiffre" id="credit-num">8470</div>
                                 <div class="ring-unit">K Q₡</div>
                             </div>
                         </div>
