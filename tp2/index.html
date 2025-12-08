@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./src/css/style.css">
+    <link href="https://unpkg.com/maplibre-gl@5.1.0/dist/maplibre-gl.css" rel="stylesheet" />
 
     <!-- JS -->
     <script type="importmap">
@@ -18,7 +19,10 @@
                 "animejs": "./node_modules/animejs/dist/bundles/anime.esm.min.js",
                 "chart.js": "./node_modules/chart.js/auto/auto.js",
                 "@kurkle/color": "./node_modules/@kurkle/color/dist/color.esm.js",
-
+                "maplibre-gl": "https://esm.sh/maplibre-gl@5.13.0",
+                "vfx-js": "https://esm.sh/@vfx-js/core",
+                "zzz": "https://esm.sh/zdog",
+                "tone.js": "https://esm.sh/tone@15.1.22",
                 "date-fns": "https://cdn.jsdelivr.net/npm/date-fns@3.x/index.mjs",
                 "chartjs-adapter-date-fns": "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.esm.js"
             }
@@ -27,19 +31,18 @@
 
     <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js" defer></script>
 
+    <script src="./src/js/bootstrap.js" defer></script>
     <script src="./src/js/chartjs.js" type="module" defer></script>
     <script src="./src/js/animejs.js" type="module" defer></script>
-
-    <script src="./src/js/bootstrap.js" defer></script>
-    <script src="./src/js/maplibre.js" defer></script>
-    <script src="./src/js/tonejs.js" defer></script>
-    <script src="./src/js/vfx.js" defer></script>
-    <script src="./src/js/zdog.js" defer></script>
+    <script src="./src/js/maplibre.js" type="module" defer></script>
+    <script src="./src/js/tonejs.js" type="module" defer></script>
+    <script src="./src/js/vfx.js" type="module" defer></script>
+    <script src="./src/js/zdog.js" type="module" defer></script>
 
 
 </head>
 
-<body class="p-0 m-0 wrapper">
+<body class="p-0 m-0">
 
     <div class="container-fluid p-2 m-0 h-100">
         <div class="row h-100 g-2">
@@ -57,7 +60,7 @@
 
                     <div class="col-12 col-md-4">
                         <div class="border p-3 text-center header-cell pulsation">
-                            <div>QRYPTA</div>
+                            <div id="name-display">QRYPTA</div>
                         </div>
                     </div>
 
@@ -68,88 +71,103 @@
                     </div>
 
                 </div>
-                
+
                 <!-- GLOBE -->
-                <div class="border flex-fill globe-container mb-2">
-                    GLOBE
-                </div>
+                <div id="globe-container" class="border flex-fill mb-2"></div>
 
                 <!-- RING -->
-                <div class="border rings-section">
+                <div class="border rings-section position-relative overflow-hidden">
 
-                    <!-- 2 cercles du haut avec texte changeant -->
-                    <div class="top-rings">
-                        <div class="text-ring">
-                            <svg viewBox="0 0 160 160">
-                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.3)"
-                                    stroke-width="8" />
-                            </svg>
-                            <div class="ring-content">
-                                <div class="ring-label">Latency</div>
-                                <div class="chiffre" id="latency-num">12</div>
-                                <div class="ring-unit">ms</div>
+                    <canvas id="zdog-rings-bg"></canvas>
+
+                    <div class="rings-content position-relative z-1">
+
+                        <!-- 2 cercles du haut avec texte changeant -->
+                        <div class="top-rings">
+                            <div class="text-ring">
+                                <svg viewBox="0 0 160 160">
+                                    <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.3)"
+                                        stroke-width="8" />
+                                </svg>
+                                <div class="ring-content">
+                                    <div class="ring-label">Latency</div>
+                                    <div class="chiffre" id="latency-num">12</div>
+                                    <div class="ring-unit">ms</div>
+                                </div>
+                            </div>
+                            <div class="text-ring">
+                                <svg viewBox="0 0 160 160">
+                                    <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.3)"
+                                        stroke-width="8" />
+                                </svg>
+                                <div class="ring-content">
+                                    <div class="ring-label">Q-Crédit</div>
+                                    <div class="chiffre" id="credit-num">8470</div>
+                                    <div class="ring-unit">K Q₡</div>
+                                </div>
                             </div>
                         </div>
+                        <!-- Titre Anneaux -->
+                        <div class="rings-title">Core Indicators</div>
 
-                        <div class="text-ring">
-                            <svg viewBox="0 0 160 160">
-                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.3)"
-                                    stroke-width="8" />
-                            </svg>
-                            <div class="ring-content">
-                                <div class="ring-label">Q-Crédit</div>
-                                <div class="chiffre" id="credit-num">8470</div>
-                                <div class="ring-unit">K Q₡</div>
+                        <!-- 4 cercles du bas avec anneaux animés -->
+                        <div class="bottom-rings">
+                            <div id="ring-activity" class="circle-container">
+                                <div class="ring-wrapper">
+                                    <svg viewBox="0 0 160 160">
+                                        <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.1)"
+                                            stroke-width="12" />
+                                        <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
+                                            stroke-width="12" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="value">0%</span>
+                                </div>
+                                <p class="ring-label">ACTIVITY RATE</p>
                             </div>
+
+                            <div id="ring-server" class="circle-container">
+                                <div class="ring-wrapper">
+                                    <svg viewBox="0 0 160 160">
+                                        <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255, 255, 255, 0.1)"
+                                            stroke-width="12" />
+                                        <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#00FFFF"
+                                            stroke-width="12" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="value">0%</span>
+                                </div>
+                                <p class="ring-label">SERVER LOAD</p>
+                            </div>
+
+                            <div id="ring-temp" class="circle-container">
+                                <div class="ring-wrapper">
+                                    <svg viewBox="0 0 160 160" style="transform: rotate(-90deg);">
+                                        <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255, 87, 51, 0.1)"
+                                            stroke-width="12" />
+                                        <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#FF5733"
+                                            stroke-width="12" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="value">0°C</span>
+                                </div>
+                                <p class="ring-label">TEMPERATURE</p>
+                            </div>
+
+                            <div id="ring-tps" class="circle-container">
+                                <div class="ring-wrapper">
+                                    <svg viewBox="0 0 160 160">
+                                        <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.1)"
+                                            stroke-width="12" />
+                                        <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
+                                            stroke-width="12" stroke-linecap="round" />
+                                    </svg>
+                                    <span class="value">0</span>
+                                </div>
+                                <p class="ring-label">TRANSACTIONS PER SECOND</p>
+                            </div>
+
                         </div>
+
                     </div>
 
-                    <!-- Titre Anneaux -->
-                    <div class="rings-title">Core Indicators</div>
-
-                    <!-- 4 cercles du bas avec anneaux animés -->
-                    <div class="bottom-rings">
-
-                        <div class="circle-container">
-                            <svg viewBox="0 0 160 160">
-                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                                <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                            </svg>
-                            <span>0</span>
-                        </div>
-
-                        <div class="circle-container">
-                            <svg viewBox="0 0 160 160">
-                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                                <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                            </svg>
-                            <span>0</span>
-                        </div>
-
-                        <div class="circle-container">
-                            <svg viewBox="0 0 160 160">
-                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                                <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                            </svg>
-                            <span>0</span>
-                        </div>
-
-                        <div class="circle-container">
-                            <svg viewBox="0 0 160 160">
-                                <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(244, 208, 63, 0.2)"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                                <circle class="ring" cx="80" cy="80" r="60" fill="none" stroke="#F4D03F"
-                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                            </svg>
-                            <span>0</span>
-                        </div>
-                    </div>
                 </div>
 
             </div>
@@ -199,27 +217,27 @@
                     <div class="gauge-item">
                         <div class="gauge-label">Global Economic Pressure</div>
                         <div class="gauge-bar">
-                            <div class="gauge-fill" id="gauge1" style="width: 67%;"></div>
-                            <div class="gauge-value">67%</div>
+                            <div class="gauge-fill" id="gauge1"></div>
+                            <div class="gauge-value"></div>
                         </div>
                     </div>
 
                     <div class="gauge-item">
                         <div class="gauge-label">System Stress</div>
                         <div class="gauge-bar">
-                            <div class="gauge-fill" id="gauge2" style="width: 42%;"></div>
-                            <div class="gauge-value">42%</div>
+                            <div class="gauge-fill" id="gauge2"></div>
+                            <div class="gauge-value"></div>
                         </div>
                     </div>
 
                     <div class="gauge-item">
                         <div class="gauge-label">User Confidence</div>
                         <div class="gauge-bar">
-                            <div class="gauge-fill" id="gauge3" style="width: 81%;"></div>
-                            <div class="gauge-value">81%</div>
+                            <div class="gauge-fill" id="gauge3"></div>
+                            <div class="gauge-value"></div>
                         </div>
                     </div>
-
+                    
                 </div>
 
             </div>
@@ -227,5 +245,8 @@
         </div>
 
     </div>
+
+
+</body>
 
 </html>

@@ -8,6 +8,4 @@ const dayOfMonth = String(today.getDate()).padStart(2, '0');
 
 const dateDisplay = document.getElementById('date-display');
 
-if (dateDisplay) {
-    dateDisplay.innerHTML = `<i class="bi bi-calendar3"></i> ${year}-${month}-${dayOfMonth}`;
-}
+dateDisplay.innerHTML = `<i class="bi bi-calendar3"></i> ${year}-${month}-${dayOfMonth}`

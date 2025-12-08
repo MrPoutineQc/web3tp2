@@ -9,7 +9,7 @@
        color: #F4D03F;
    }
 
-   /* Force les colonnes flex */
+   /* FORCE LES COLONNES FLEX */
    .d-flex.flex-column {
        min-height: 0;
    }
@@ -37,7 +37,7 @@
        background: linear-gradient(135deg, rgba(244, 208, 63, 0.1), rgba(212, 160, 23, 0.1));
    }
 
-   /* Graphiques */
+   /* CHART */
    .chart-wrapper {
        position: relative;
        padding: 1vh;
@@ -63,7 +63,8 @@
        letter-spacing: 1px;
    }
 
-   /* Globe container */
+
+   /* GLOBE CONTAINER */
    .globe-container {
        position: relative;
        width: 100%;
@@ -74,6 +75,7 @@
        justify-content: center;
        font-size: 2rem;
    }
+
 
    /* SECTION ANNEAU */
    .rings-section {
@@ -96,7 +98,7 @@
        font-weight: 700;
        text-transform: uppercase;
        letter-spacing: 2px;
-       color: #F4D03F;
+       color: #F9E79F;
        padding: 10px 0;
    }
 
@@ -107,11 +109,12 @@
        gap: 10px;
    }
 
-   /* TEXT (2 du haut) */
+
+   /* 2 ANNEAUX DU HAUT */
    .text-ring {
        position: relative;
-       width: 120px;
-       height: 120px;
+       width: 150px;
+       height: 150px;
    }
 
    .text-ring svg {
@@ -145,37 +148,82 @@
        margin-top: 2px;
    }
 
+
    /* 4 ANNEAUX ANIMÉS DU BAS */
+
+   .bottom-rings {
+       display: flex;
+       justify-content: space-around;
+       align-items: flex-start;
+       gap: 20px;
+       width: 100%;
+       margin-top: 20px;
+       font-family: 'Courier New', Courier, monospace;
+   }
+
    .circle-container {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       width: 120px;
+   }
+
+   .ring-wrapper {
        position: relative;
        width: 100px;
        height: 100px;
-       display: flex;
-       align-items: center;
-       justify-content: center;
    }
 
-   .circle-container svg {
+   .ring-wrapper svg {
        width: 100%;
        height: 100%;
-       transform: rotate(-90deg);
+       display: block;
+       overflow: visible;
    }
 
-   .circle-container span {
+   .ring-bg {
+       fill: none;
+       stroke: rgba(244, 208, 63, 0.15);
+       stroke-width: 12;
+   }
+
+   .ring {
+       fill: none;
+       stroke: #F4D03F;
+       stroke-width: 12;
+       stroke-linecap: round;
+   }
+
+   .ring-wrapper .value {
        position: absolute;
        top: 50%;
        left: 50%;
        transform: translate(-50%, -50%);
-       font-size: 1rem;
-       font-weight: 700;
+       color: #F4D03F;
+       font-size: 1.1rem;
+       font-weight: bold;
+       z-index: 2;
+       text-shadow: 0 0 8px rgba(244, 208, 63, 0.4);
+   }
+
+   .ring-label {
+       margin-top: 15px;
+       font-size: 0.8rem;
+       text-transform: uppercase;
+       text-align: center;
+       letter-spacing: 1px;
+       font-weight: bold;
+       line-height: 1.4;
        color: #F4D03F;
    }
 
-   /* GAUGE BARS */
+
+   /* JAUGES */
    .gauge-container {
        position: relative;
        padding: 45px 20px 20px 20px;
        max-height: fit-content;
+       overflow: hidden;
    }
 
    .gauge-item {
@@ -205,6 +253,24 @@
        transition: width 0.5s ease;
        box-shadow: 0 0 10px rgba(244, 208, 63, 0.5);
        border-radius: 20px;
+       width: 0%;
+   }
+
+   /* RÉFÉRENCE PARENT */
+   .rings-section {
+       position: relative;
+   }
+
+   /* Z-DOG BACKGROUND */
+   #zdog-rings-bg {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       width: 75%;
+       height: 75%;
+       z-index: 0;
+       opacity: 0.15;
+       transform: translate(-50%, -50%);
    }
 
    /* TEXT GAUGE */
@@ -224,19 +290,15 @@
        0% {
            text-shadow: 0 0 5px #F4D03F;
        }
-
        25% {
            text-shadow: -2px 0 5px #D4A017, 2px 0 5px #F9E79F;
        }
-
        50% {
            text-shadow: 0 0 5px #F4D03F;
        }
-
        75% {
            text-shadow: 2px 0 5px #D4A017, -2px 0 5px #F9E79F;
        }
-
        100% {
            text-shadow: 0 0 5px #F4D03F;
        }
